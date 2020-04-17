@@ -6,15 +6,17 @@ class ListApi extends Component {
         forces: [],
     };
 
-    componentDidMount(){
+    componentDidMount() {
         axios.get('https://data.police.uk/api/forces')
             .then(res => {
                 const forces = res.data;
                 this.setState({ forces });
+            }).catch(err => {
+                console.log(err);
             });
     };
 
-    render(){
+    render() {
         return(
             <ul>
                 {this.state.forces.map(forces => <li>{forces.name}</li>)}
