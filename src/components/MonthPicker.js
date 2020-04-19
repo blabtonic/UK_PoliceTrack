@@ -8,7 +8,7 @@ function MonthPicker() {
       <DatePicker
         selected={startDate}
         onChange={date => setStartDate(date)}
-        dateFormat="MM/yyyy"
+        dateFormat="MM-yyyy"
         showMonthYearPicker
       />
     );
