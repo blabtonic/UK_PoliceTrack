@@ -9,8 +9,8 @@ import Mapper from './components/MapComponent';
 function App() {
   return (
     <div className="App">
-      <MonthPicker></MonthPicker>
       <Mapper></Mapper>
+      <MonthPicker></MonthPicker>
     </div>
   );
 }
