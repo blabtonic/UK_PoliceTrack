@@ -1,8 +1,6 @@
 import React from 'react';
-//import ListApi from './components/ListApi';
+import ListApi from './components/ListApi';
 import MonthPicker from './components/MonthPicker';
-import Map from 'pigeon-maps';
-import Marker from 'pigeon-marker'
 import Mapper from './components/MapComponent';
 
 
@@ -11,6 +9,7 @@ function App() {
     <div className="App">
       <Mapper></Mapper>
       <MonthPicker></MonthPicker>
+      <ListApi></ListApi>
     </div>
   );
 }

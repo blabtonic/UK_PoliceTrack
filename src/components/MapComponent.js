@@ -3,11 +3,11 @@ import Map from 'pigeon-maps';
 import Marker from 'pigeon-marker';
 import Button from 'react-bootstrap/Button';
 
-// need to find out how this works why is it an array?
+// need to find out how this works
 const providers = {
     osm: (x,y,z) => {
-        const s = String.fromCharCode(97 + (x + y + z) % 3)
-        return `https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png`
+        const s = String.fromCharCode(97 + (x + y + z) % 3);
+        return `https://${s}.tile.openstreetmap.org/${z}/${x}/${y}.png`;
     }
 };
 
