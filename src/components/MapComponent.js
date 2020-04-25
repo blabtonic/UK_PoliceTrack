@@ -69,7 +69,7 @@ class Mapper extends Component {
         const { center, zoom, provider, animating, animate } = this.state;
         return(
             <div className="MapBoard">
-                <Map provider={providers[provider]} center={center} animate={animate} zoom={zoom} width={700} height={500} zoomOnMouseWheel={true}>
+                <Map provider={providers[provider]} center={center} onAnimationStart={this.handleAnimationStart} onAnimationStop={this.handleAnimationStop} animate={animate} zoom={zoom} width={700} height={500} zoomOnMouseWheel={true}>
                     {Object.keys(markers).map(key => (
                         <Marker key={key} anchor={markers[key][0]} payload={key}></Marker>
                     ))}
