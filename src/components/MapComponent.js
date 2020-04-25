@@ -12,7 +12,7 @@ const providers = {
 };
 
 const markers = {
-    /* long, lat, zoom level */
+    /* lat, long, zoom level */
     London: [[51.5071, -0.0612], 15],
     Birmingham:[[52.4788, -1.8966], 12],
     Glasgow:[[55.8590, -4.2624], 11],
@@ -31,7 +31,7 @@ class Mapper extends Component {
         super(props)
 
         this.state = {
-            center: [51.507, -0.0612],
+            center: [51.507, -0.0622],
             zoom: 5,
             animate: true,
             animating: false,
@@ -52,6 +52,17 @@ class Mapper extends Component {
         });
     };
 
+    handleBoundsChange = ({center , zoom, bounds, initial }) => {
+        if (initial) {
+            console.log('Retrieved initial bounds: ', bounds);
+        }
+        this.setState({center, zoom})
+    }
+
+    handleClick = ({ event, latLng, pixel }) => { 
+        console.log('Map clicked', latLng, pixel);       
+    }
+
     handleAnimationStart = () => {
         this.setState({ animating: true });
     };
@@ -69,11 +80,18 @@ class Mapper extends Component {
         const { center, zoom, provider, animating, animate } = this.state;
         return(
             <div className="MapBoard">
-                <Map provider={providers[provider]} center={center} onAnimationStart={this.handleAnimationStart} onAnimationStop={this.handleAnimationStop} animate={animate} zoom={zoom} width={700} height={500} zoomOnMouseWheel={true}>
-                    {Object.keys(markers).map(key => (
-                        <Marker key={key} anchor={markers[key][0]} payload={key}></Marker>
-                    ))}
-                    {/* <Marker anchor={[51.507, -0.0612]} payload={1} onClick={({ event, anchor, payload }) => {}}></Marker> */}
+                <Map center={center}
+                provider={providers[provider]}  
+                onBoundsChanged={this.handleBoundsChange}
+                onAnimationStart={this.handleAnimationStart} 
+                onAnimationStop={this.handleAnimationStop} 
+                animate={animate} 
+                zoom={zoom} width={700} height={500} 
+                zoomOnMouseWheel={true}>
+
+                {Object.keys(markers).map(key => (
+                    <Marker key={key} anchor={markers[key][0]} payload={key}></Marker>
+                ))}
                 </Map>
                 <Button variant="primary" onClick={this.zoomIn}>+</Button>
                 <Button variant="primary"onClick={this.zoomOut}>-</Button>
