@@ -11,13 +11,24 @@ const providers = {
     }
 };
 
+const markers = {
+    London: [[51.5071, -0.0612], 15],
+    Birmingham:[[52.4788, -1.8966], 12],
+    Glasgow:[[55.8590, -4.2624], 11],
+    Liverpool:[[53.4095, -2.9903], 11],
+    Manchester:[[53.4821, -2.2413], 12],
+    Leeds:[[53.7993, -1.5498], 12],
+    Belfast:[[54.5979, -5.9372], 11],
+    Cardiff:[[51.4805, -3.1981], 13],
+  }
+
 class Mapper extends Component {
     constructor (props){
         super(props)
 
         this.state = {
             center: [51.507, -0.0612],
-            zoom:5,
+            zoom: 5,
             provider: 'osm',
             metaWheelZoom: true,
         }
@@ -45,7 +56,10 @@ class Mapper extends Component {
         return(
             <div className="MapBoard">
                 <Map provider={providers[provider]} center={center} zoom={zoom} width={900} height={900} zoomOnMouseWheel={true}>
-                    <Marker anchor={[51.507, -0.0612]} payload={1} onClick={({ event, anchor, payload }) => {}}></Marker>
+                    {Object.keys(markers).map(key => (
+                        <Marker key={key} anchor={markers[key][0]} payload={key}></Marker>
+                    ))}
+                    {/* <Marker anchor={[51.507, -0.0612]} payload={1} onClick={({ event, anchor, payload }) => {}}></Marker> */}
                 </Map>
                 <Button variant="primary" onClick={this.zoomIn}>+</Button>
                 <Button variant="primary"onClick={this.zoomOut}>-</Button>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 class Form extends Component {
-    constructor(){
+    constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -13,7 +13,7 @@ class Form extends Component {
     }
 
     render() {
-        return(
+        return (
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor="latitude">Enter Latitude</label>
                 <input id="latitude" type="text"/>
