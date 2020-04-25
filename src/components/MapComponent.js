@@ -78,6 +78,12 @@ class Mapper extends Component {
     render() {
         //used to set the actual state for the components under here 
         const { center, zoom, provider, animating, animate } = this.state;
+        const mapLatitude = Math.round(center[0] * 10000) / 10000;
+        const mapLongitude = Math.round(center[1] * 10000) / 10000;
+        /**
+         * mapLatitude = {Math.round(center[0] * 10000) / 10000}
+         * mapLongitude = {Math.round(center[1] * 10000) / 10000}
+         */
         return(
             <div className="MapBoard">
                 <Map center={center}
@@ -97,9 +103,9 @@ class Mapper extends Component {
                 <Button variant="primary"onClick={this.zoomOut}>-</Button>
                 {/* active lat and long might make better*/}
                 <div>
-                    {Math.round(center[0] * 10000) / 10000} ({lat2tile(center[0], zoom)});
+                    {mapLatitude} ({lat2tile(center[0], zoom)});
                     {' x '}
-                    {Math.round(center[1] * 10000) / 10000} ({lng2tile(center[1], zoom)});
+                    {mapLongitude} ({lng2tile(center[1], zoom)});
                     {'zoom: '}
                     {Math.round(zoom * 100) / 100}
                     {' - '}
