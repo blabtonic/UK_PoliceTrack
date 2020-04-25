@@ -7,6 +7,9 @@ class ListApi extends Component {
     };
 
     async componentDidMount() {
+        let location_data = 'https://data.police.uk/api/stops-street?lat=51.507&lng=-0.0612&date=2019-08';
+        const requestOne = axios.get(location_data);
+
         // the params need to be dynamic
         axios.get('https://data.police.uk/api/stops-street?lat=51.507&lng=-0.0612&date=2019-08')
             .then(res => {
@@ -15,6 +18,13 @@ class ListApi extends Component {
             }).catch(err => {
                 console.log(err);
             });
+        axios.all([requestOne])
+            .then(
+                axios.spread((...res) => {
+                    const responseOne = res[0];
+                    console.log(responseOne);
+                })
+            );
     };
 
     render() {
@@ -32,6 +42,8 @@ class ListApi extends Component {
                         <h5>Outcome:</h5>
                         <p>{street_stops.outcome}</p>
                         <h5>Location:</h5>
+                        <p>Latitude: {street_stops.location['latitude']}</p>
+                        <p>Longtiude: {street_stops.location['longitude']}</p>
                         <hr></hr>
                     </div>
                 )}
