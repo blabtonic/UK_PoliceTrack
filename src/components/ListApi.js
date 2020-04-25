@@ -14,7 +14,7 @@ class ListApi extends Component {
         //let latitude = {street_stops.location['latitude']};
 
         // the params need to be dynamic
-        axios.get('https://data.police.uk/api/stops-street?lat=51.507&lng=-0.0612&date=2019-08')
+        axios.get('https://data.police.uk/api/stops-street?lat=51.507&lng=-0.074681&date=2019-08')
             .then(res => {
                 const street_stops = res.data;
                 this.setState({street_stops});
@@ -35,15 +35,15 @@ class ListApi extends Component {
             <ul>
                 {this.state.street_stops.map(street_stops => 
                     <div>
-                        <h5>Gender:</h5>
+                        <h4>Gender:</h4>
                         <p>{street_stops.gender}</p>
-                        <h5>Ethnicity:</h5>
+                        <h4>Ethnicity:</h4>
                         <p>{street_stops.self_defined_ethnicity}</p>
-                        <h5>Age Range:</h5>
+                        <h4>Age Range:</h4>
                         <p>{street_stops.age_range}</p>
-                        <h5>Outcome:</h5>
+                        <h4>Outcome:</h4>
                         <p>{street_stops.outcome}</p>
-                        <h5>Location:</h5>
+                        <h4>Location:</h4>
                         <p>Street: {street_stops.location.street['name']}</p>
                         <p>Latitude: {street_stops.location['latitude']}</p>
                         <p>Longtiude: {street_stops.location['longitude']}</p>
