@@ -33,34 +33,43 @@ class Mapper extends Component {
         this.state = {
             center: [51.507, -0.0612],
             zoom: 5,
+            animate: true,
             animating: false,
             provider: 'osm',
             metaWheelZoom: true,
         }
-    }
+    };
 
     zoomIn = () => {
         this.setState({
             zoom: Math.min(this.state.zoom + 1, 20)
         });
-    }
+    };
 
     zoomOut = () => {
         this.setState({
             zoom: Math.max(this.state.zoom - 1, 1)
         });
-    }
+    };
+
+    handleAnimationStart = () => {
+        this.setState({ animating: true });
+    };
+
+    handleAnimationStop = () => {
+        this.setState({ animating: false });
+    };
 
     handleMarkerClick = ({event, payload, anchor}) => {
         console.log(`Marker #${payload} clicked at: `, anchor);
-    }
+    };
 
     render() {
         //used to set the actual state for the components under here 
-        const { center, zoom, provider } = this.state;
+        const { center, zoom, provider, animating, animate } = this.state;
         return(
             <div className="MapBoard">
-                <Map provider={providers[provider]} center={center} zoom={zoom} width={900} height={900} zoomOnMouseWheel={true}>
+                <Map provider={providers[provider]} center={center} animate={animate} zoom={zoom} width={700} height={500} zoomOnMouseWheel={true}>
                     {Object.keys(markers).map(key => (
                         <Marker key={key} anchor={markers[key][0]} payload={key}></Marker>
                     ))}
@@ -68,12 +77,15 @@ class Mapper extends Component {
                 </Map>
                 <Button variant="primary" onClick={this.zoomIn}>+</Button>
                 <Button variant="primary"onClick={this.zoomOut}>-</Button>
+                {/* active lat and long might make better*/}
                 <div>
                     {Math.round(center[0] * 10000) / 10000} ({lat2tile(center[0], zoom)});
                     {' x '}
                     {Math.round(center[1] * 10000) / 10000} ({lng2tile(center[1], zoom)});
-                    {'zoom level: '}
+                    {'zoom: '}
                     {Math.round(zoom * 100) / 100}
+                    {' - '}
+                    {animating ? 'animating' : 'stopped'}
                 </div>  
             </div>
         );
