@@ -9,6 +9,9 @@ class ListApi extends Component {
     async componentDidMount() {
         let location_data = 'https://data.police.uk/api/stops-street?lat=51.507&lng=-0.0612&date=2019-08';
         const requestOne = axios.get(location_data);
+        
+        //let longitude = {street_stops.location['longitude']};
+        //let latitude = {street_stops.location['latitude']};
 
         // the params need to be dynamic
         axios.get('https://data.police.uk/api/stops-street?lat=51.507&lng=-0.0612&date=2019-08')
@@ -28,7 +31,6 @@ class ListApi extends Component {
     };
 
     render() {
-        //location object needs to be map how to do it?
         return(
             <ul>
                 {this.state.street_stops.map(street_stops => 
@@ -42,6 +44,7 @@ class ListApi extends Component {
                         <h5>Outcome:</h5>
                         <p>{street_stops.outcome}</p>
                         <h5>Location:</h5>
+                        <p>Street: {street_stops.location.street['name']}</p>
                         <p>Latitude: {street_stops.location['latitude']}</p>
                         <p>Longtiude: {street_stops.location['longitude']}</p>
                         <hr></hr>
