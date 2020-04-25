@@ -12,6 +12,7 @@ const providers = {
 };
 
 const markers = {
+    /* long, lat, zoom level */
     London: [[51.5071, -0.0612], 15],
     Birmingham:[[52.4788, -1.8966], 12],
     Glasgow:[[55.8590, -4.2624], 11],
@@ -20,7 +21,10 @@ const markers = {
     Leeds:[[53.7993, -1.5498], 12],
     Belfast:[[54.5979, -5.9372], 11],
     Cardiff:[[51.4805, -3.1981], 13],
-  }
+};
+
+const lat2tile = (lat, zoom) => (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom);
+const lng2tile = (lon, zoom) => (lon + 180) / 360 * Math.pow(2, zoom);
 
 class Mapper extends Component {
     constructor (props){
@@ -29,6 +33,7 @@ class Mapper extends Component {
         this.state = {
             center: [51.507, -0.0612],
             zoom: 5,
+            animating: false,
             provider: 'osm',
             metaWheelZoom: true,
         }
@@ -63,6 +68,13 @@ class Mapper extends Component {
                 </Map>
                 <Button variant="primary" onClick={this.zoomIn}>+</Button>
                 <Button variant="primary"onClick={this.zoomOut}>-</Button>
+                <div>
+                    {Math.round(center[0] * 10000) / 10000} ({lat2tile(center[0], zoom)});
+                    {' x '}
+                    {Math.round(center[1] * 10000) / 10000} ({lng2tile(center[1], zoom)});
+                    {'zoom level: '}
+                    {Math.round(zoom * 100) / 100}
+                </div>  
             </div>
         );
     }
