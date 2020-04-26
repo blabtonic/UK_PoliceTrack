@@ -78,8 +78,8 @@ class Mapper extends Component {
     render() {
         //used to set the actual state for the components under here 
         const { center, zoom, provider, animating, animate } = this.state;
-        const mapLatitude = Math.round(center[0] * 10000) / 10000;
-        const mapLongitude = Math.round(center[1] * 10000) / 10000;
+        let mapLatitude = Math.round(center[0] * 10000) / 10000;
+        let mapLongitude = Math.round(center[1] * 10000) / 10000;
         /**
          * mapLatitude = {Math.round(center[0] * 10000) / 10000}
          * mapLongitude = {Math.round(center[1] * 10000) / 10000}
