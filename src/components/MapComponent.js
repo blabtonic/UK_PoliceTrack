@@ -13,13 +13,13 @@ const providers = {
 
 const markers = {
     /* lat, long, zoom level */
-    London: [[51.5071, -0.0612], 15],
+    London: [[51.5071, -0.0612], 12],
     Birmingham:[[52.4788, -1.8966], 12],
     Glasgow:[[55.8590, -4.2624], 11],
     Liverpool:[[53.4095, -2.9903], 11],
     Manchester:[[53.4821, -2.2413], 12],
     Leeds:[[53.7993, -1.5498], 12],
-    Belfast:[[54.5979, -5.9372], 11],
+    Edinburgh:[[55.9557, -3.1970, 12]],
     Cardiff:[[51.4805, -3.1981], 13],
 };
 

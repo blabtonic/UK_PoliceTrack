@@ -2,41 +2,37 @@ import React, { Component } from 'react';
 
 
 class Form extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             latitude: '',
-            longtiude: '',
+            longitude: '',
         };
-    };
-
-    handleChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({
-            [name]: value
-        });
     };
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { latitude, longtiude } = this.state;
+        // send this 
+        alert('Got this data: '+ this.state.latitude);
+        alert('Got this data too: '+ this.state.longitude);
+    };
 
-        // not showing data
-        alert(`The data submitted: \n
-                latitude: ${latitude} \n
-                longtitude: ${longtiude}`);
+    handleChange = (event) => {
+        // THIS GETS THE INPUT NAME ATTRIBUTE FIELD!!
+        let lat = event.target.name; // input name
+        let lng = event.target.value; // value of the name attribute
+        this.setState({[lat]: lng}); // [name]: value
     };
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="latitude">Enter Latitude</label>
-                <input id="latitude" type="text" value={this.props.latitude} onChange={this.props.handleChange}/>
-
-                <label htmlFor="Longtiude">Enter Longtiude</label>
-                <input id="Longtiude" type="text"value={this.props.longtiude} onChange={this.props.handleChange}/>
-
-                <button>Send</button>
+                <h1>LAT:{this.state.latitude} x LNG:{this.state.longitude}</h1>
+                <p>enter lat</p>
+                <input type="number" step="0.0001" name="latitude" onChange={this.handleChange}/>
+                <p>enter lng</p>
+                <input type="number" step="0.0001" name="longitude" onChange={this.handleChange}/>
+                <input type="submit"/>
             </form>
         );
     }
