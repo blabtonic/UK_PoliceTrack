@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
 class ListApi extends Component {
     state = {
@@ -7,27 +8,24 @@ class ListApi extends Component {
     };
 
     async componentDidMount() {
-        let location_data = 'https://data.police.uk/api/stops-street?lat=51.507&lng=-0.0612&date=2019-08';
-        const requestOne = axios.get(location_data);
-        
         //let longitude = {street_stops.location['longitude']};
         //let latitude = {street_stops.location['latitude']};
 
+        /**
+         * await api.get(`https://api.twitch.tv/helix/streams?game_id${location.state.gameID}`);
+         * (`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=2019-06`)
+         */
+        // temp dynamic params for data
+        let Latitude = 53.7993; 
+        let Longtiude = -1.5498;
         // the params need to be dynamic
-        axios.get('https://data.police.uk/api/stops-street?lat=51.507&lng=-0.074681&date=2019-08')
+        axios.get(`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=2019-06`)
             .then(res => {
                 const street_stops = res.data;
                 this.setState({street_stops});
             }).catch(err => {
                 console.log(err);
             });
-        axios.all([requestOne])
-            .then(
-                axios.spread((...res) => {
-                    const responseOne = res[0];
-                    console.log(responseOne);
-                })
-            );
     };
 
     render() {
