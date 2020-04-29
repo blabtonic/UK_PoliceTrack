@@ -12,13 +12,14 @@ class ListApi extends Component {
         //let latitude = {street_stops.location['latitude']};
 
         /**
-         * await api.get(`https://api.twitch.tv/helix/streams?game_id${location.state.gameID}`);
-         * (`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=2019-06`)
+         * temp dynamic params for data
+         * this needs to be the submitted form data how to get two components
+         * talking to each other?
+         * 
          */
-        // temp dynamic params for data
+
         let Latitude = 53.7993; 
         let Longtiude = -1.5498;
-        // the params need to be dynamic
         axios.get(`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=2019-06`)
             .then(res => {
                 const street_stops = res.data;
