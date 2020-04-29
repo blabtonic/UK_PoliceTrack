@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
 
 class ListApi extends Component {
     state = {
@@ -15,12 +14,15 @@ class ListApi extends Component {
          * temp dynamic params for data
          * this needs to be the submitted form data how to get two components
          * talking to each other?
+         * start with month picker component
          * 
          */
 
         let Latitude = 53.7993; 
         let Longtiude = -1.5498;
-        axios.get(`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=2019-06`)
+        let startDate = '2019-04';
+        // https://data.police.uk/api/stops-street?lat=52.629729&lng=-1.131592&date=2018-06
+        axios.get(`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=${startDate}`)
             .then(res => {
                 const street_stops = res.data;
                 this.setState({street_stops});
