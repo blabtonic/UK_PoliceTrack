@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
+import {Button, Col, Form } from 'react-bootstrap';
+import MonthPicker from './MonthPicker';
+
 
 class FormSubmit extends Component {
     constructor(props) {
@@ -29,14 +31,22 @@ class FormSubmit extends Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
-                <div className="mb-3">
-                    <h1>LAT:{this.state.latitude} x LNG:{this.state.longitude}</h1>
-                    <p>enter lat</p>
-                    <input type="number" step="0.0001" name="latitude" onChange={this.handleChange}/>
-                    <p>enter lng</p>
-                    <input type="number" step="0.0001" name="longitude" onChange={this.handleChange}/>
-                    <input type="submit"/>
-                </div>
+                <h1>LAT:{this.state.latitude} x LNG:{this.state.longitude}</h1>
+                <Form.Row>
+                    <Form.Group as={Col} controlId="formLatitude">
+                        <Form.Label>Enter Lat</Form.Label>
+                        <Form.Control type="number" step="0.0001" name="latitude" placeholder="Enter Latitude" onChange={this.handleChange}></Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="formLongitude">
+                        <Form.Label>Enter Lng</Form.Label>
+                        <Form.Control type="number" step="0.0001" name="longitude" placeholder="Enter Longitude" onChange={this.handleChange}></Form.Control>
+                    </Form.Group>
+                </Form.Row>
+                <Form.Group as={Col} controlId="formDate">
+                    <Form.Label>Enter Date</Form.Label>
+                    <MonthPicker></MonthPicker>
+                </Form.Group>
+                <Button variant="primary" type="submit">Submit</Button>
             </Form>
         );
     }
