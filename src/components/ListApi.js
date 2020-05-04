@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { ListGroup } from 'react-bootstrap';
 
 class ListApi extends Component {
     state = {
@@ -35,21 +36,22 @@ class ListApi extends Component {
         return(
             <ul>
                 {this.state.street_stops.map(street_stops => 
-                    <div>
-                        <h4>Gender:</h4>
-                        <p>{street_stops.gender}</p>
-                        <h4>Ethnicity:</h4>
-                        <p>{street_stops.self_defined_ethnicity}</p>
-                        <h4>Age Range:</h4>
-                        <p>{street_stops.age_range}</p>
-                        <h4>Outcome:</h4>
-                        <p>{street_stops.outcome}</p>
-                        <h4>Location:</h4>
-                        <p>Street: {street_stops.location.street['name']}</p>
-                        <p>Latitude: {street_stops.location['latitude']}</p>
-                        <p>Longtiude: {street_stops.location['longitude']}</p>
-                        <hr></hr>
-                    </div>
+                    <ListGroup>
+                        <ListGroup.Item>
+                            <h4>Gender:</h4>
+                            {street_stops.gender}
+                            <h4>Ethnicity:</h4>
+                            {street_stops.self_defined_ethnicity}
+                            <h4>Age Range:</h4>
+                            {street_stops.age_range}
+                            <h4>Outcome:</h4>
+                            {street_stops.outcome}
+                            <h4>Location:</h4>
+                            <strong>Street:</strong> {street_stops.location.street['name']}<br/>
+                            <strong>Latitude:</strong> {street_stops.location['latitude']}<br/>
+                            <strong>Longitude:</strong> {street_stops.location['longitude']}
+                        </ListGroup.Item>
+                    </ListGroup>
                 )}
             </ul>
         )

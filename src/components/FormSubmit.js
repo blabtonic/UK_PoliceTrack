@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Col, Form } from 'react-bootstrap';
+import { Button, Col, Form } from 'react-bootstrap';
 import MonthPicker from './MonthPicker';
 import axios from 'axios';
 
