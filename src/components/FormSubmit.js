@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Button, Col, Form } from 'react-bootstrap';
 import MonthPicker from './MonthPicker';
-
+import axios from 'axios';
 
 class FormSubmit extends Component {
     constructor(props) {
@@ -9,6 +9,7 @@ class FormSubmit extends Component {
         this.state = {
             latitude: '',
             longitude: '',
+            street_stops: [],
         };
     };
 
@@ -17,8 +18,17 @@ class FormSubmit extends Component {
         // send this 
         let Latitude = this.state.latitude; 
         let Longtiude = this.state.longitude;
-        alert('Got this data: '+ Latitude);
-        alert('Got this data too: '+ Longtiude);
+        let startDate = '2019-11';
+        
+        // startData needs params
+        axios.get(`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=${startDate}`)
+            .then(res => {
+                const street_stops = res.data;
+                this.setState({street_stops});
+                console.log(street_stops);
+            }).catch(err => {
+                console.log(err);
+            });
     };
 
     handleChange = (event) => {
