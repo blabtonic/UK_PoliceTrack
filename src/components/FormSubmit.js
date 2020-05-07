@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
-import MonthPicker from './MonthPicker';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() +1),
+        year = d.getFullYear();
+    
+    if (month.length < 2){
+        month = '0' + month;
+    }
+
+    return [year, month].join('-');
+}
 
 class FormSubmit extends Component {
     constructor(props) {
@@ -10,6 +23,7 @@ class FormSubmit extends Component {
             latitude: '',
             longitude: '',
             street_stops: [],
+            startDate: new Date(),
         };
     };
 
@@ -18,7 +32,7 @@ class FormSubmit extends Component {
         // send this 
         let Latitude = this.state.latitude; 
         let Longtiude = this.state.longitude;
-        let startDate = '2019-11';
+        let startDate = formatDate(this.state.startDate);
         
         // startData needs params
         axios.get(`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=${startDate}`)
@@ -30,6 +44,12 @@ class FormSubmit extends Component {
                 console.log(err);
             });
     };
+
+    handleChangeDate = (date) => {
+        this.setState({
+            startDate: date
+        });
+    }
 
     handleChange = (event) => {
         // THIS GETS THE INPUT NAME ATTRIBUTE FIELD!!
@@ -54,7 +74,13 @@ class FormSubmit extends Component {
                 </Form.Row>
                 <Form.Group as={Col} controlId="formDate">
                     <Form.Label>Enter Date</Form.Label>
-                    <MonthPicker></MonthPicker>
+                    <DatePicker
+                        selected={this.state.startDate}
+                        onChange={this.handleChangeDate}
+                        name="startDate"
+                        dateFormat="yyyy-MM" //The output of the startDate state
+                        showMonthYearPicker
+                    />
                 </Form.Group>
                 <Button variant="primary" type="submit">Submit</Button>
             </Form>
