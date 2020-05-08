@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Col, Form } from 'react-bootstrap';
+import { Button, Col, Form, ListGroup } from 'react-bootstrap';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
 function formatDate(date) {
+    //the state data needs to be formatted to yyyy-MM
     var d = new Date(date),
         month = '' + (d.getMonth() +1),
         year = d.getFullYear();
@@ -14,7 +15,7 @@ function formatDate(date) {
     }
 
     return [year, month].join('-');
-}
+};
 
 class FormSubmit extends Component {
     constructor(props) {
@@ -24,6 +25,7 @@ class FormSubmit extends Component {
             longitude: '',
             street_stops: [],
             startDate: new Date(),
+            isSubmitted: false,
         };
     };
 
@@ -43,6 +45,8 @@ class FormSubmit extends Component {
             }).catch(err => {
                 console.log(err);
             });
+        
+        this.setState({isSubmitted: true})
     };
 
     handleChangeDate = (date) => {
@@ -60,30 +64,54 @@ class FormSubmit extends Component {
 
     render() {
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <h1>LAT:{this.state.latitude} x LNG:{this.state.longitude}</h1>
-                <Form.Row>
-                    <Form.Group as={Col} controlId="formLatitude">
-                        <Form.Label>Enter Lat</Form.Label>
-                        <Form.Control type="number" step="0.0001" name="latitude" placeholder="Enter Latitude" onChange={this.handleChange}></Form.Control>
+            <div>
+                <Form onSubmit={this.handleSubmit}>
+                    <h1>LAT:{this.state.latitude} x LNG:{this.state.longitude}</h1>
+                    <Form.Row>
+                        <Form.Group as={Col} controlId="formLatitude">
+                            <Form.Label>Enter Lat</Form.Label>
+                            <Form.Control type="number" step="0.0001" name="latitude" placeholder="Enter Latitude" onChange={this.handleChange}></Form.Control>
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="formLongitude">
+                            <Form.Label>Enter Lng</Form.Label>
+                            <Form.Control type="number" step="0.0001" name="longitude" placeholder="Enter Longitude" onChange={this.handleChange}></Form.Control>
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Group as={Col} controlId="formDate">
+                        <Form.Label>Enter Date</Form.Label>
+                        <DatePicker
+                            selected={this.state.startDate}
+                            onChange={this.handleChangeDate}
+                            name="startDate"
+                            dateFormat="yyyy-MM" //The output of the startDate state
+                            showMonthYearPicker
+                        />
                     </Form.Group>
-                    <Form.Group as={Col} controlId="formLongitude">
-                        <Form.Label>Enter Lng</Form.Label>
-                        <Form.Control type="number" step="0.0001" name="longitude" placeholder="Enter Longitude" onChange={this.handleChange}></Form.Control>
-                    </Form.Group>
-                </Form.Row>
-                <Form.Group as={Col} controlId="formDate">
-                    <Form.Label>Enter Date</Form.Label>
-                    <DatePicker
-                        selected={this.state.startDate}
-                        onChange={this.handleChangeDate}
-                        name="startDate"
-                        dateFormat="yyyy-MM" //The output of the startDate state
-                        showMonthYearPicker
-                    />
-                </Form.Group>
-                <Button variant="primary" type="submit">Submit</Button>
-            </Form>
+                    <Button variant="primary" type="submit">Submit</Button>
+                </Form>
+                {this.state.isSubmitted &&
+                    <ul>
+                        {this.state.street_stops.map(street_stops => 
+                            <ListGroup>
+                                <ListGroup.Item>
+                                    <h4>Gender:</h4>
+                                    {street_stops.gender}
+                                    <h4>Ethnicity:</h4>
+                                    {street_stops.self_defined_ethnicity}
+                                    <h4>Age Range:</h4>
+                                    {street_stops.age_range}
+                                    <h4>Outcome:</h4>
+                                    {street_stops.outcome}
+                                    <h4>Location:</h4>
+                                    <strong>Street:</strong> {street_stops.location.street['name']}<br/>
+                                    <strong>Latitude:</strong> {street_stops.location['latitude']}<br/>
+                                    <strong>Longitude:</strong> {street_stops.location['longitude']}
+                                </ListGroup.Item>
+                            </ListGroup>
+                        )}
+                    </ul>
+                }
+            </div>
         );
     }
 }
