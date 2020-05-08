@@ -59,8 +59,8 @@ class Mapper extends Component {
         this.setState({center, zoom})
     }
 
-    handleClick = ({ event, latLng, pixel }) => { 
-        console.log('Map clicked', latLng, pixel);       
+    handleClick = ({ event, latLng, pixel }) => {
+        console.log('Map clicked', latLng, pixel);
     }
 
     handleAnimationStart = () => {
@@ -76,7 +76,7 @@ class Mapper extends Component {
     };
 
     render() {
-        //used to set the actual state for the components under here 
+        //used to set the actual state for the components under here
         const { center, zoom, provider, animating, animate } = this.state;
         let mapLatitude = Math.round(center[0] * 10000) / 10000;
         let mapLongitude = Math.round(center[1] * 10000) / 10000;
@@ -87,12 +87,12 @@ class Mapper extends Component {
         return(
             <div className="MapBoard">
                 <Map center={center}
-                provider={providers[provider]}  
+                provider={providers[provider]}
                 onBoundsChanged={this.handleBoundsChange}
-                onAnimationStart={this.handleAnimationStart} 
-                onAnimationStop={this.handleAnimationStop} 
-                animate={animate} 
-                zoom={zoom} width={700} height={500} 
+                onAnimationStart={this.handleAnimationStart}
+                onAnimationStop={this.handleAnimationStop}
+                animate={animate}
+                zoom={zoom} width={700} height={500}
                 zoomOnMouseWheel={true}>
 
                 {Object.keys(markers).map(key => (
@@ -110,7 +110,7 @@ class Mapper extends Component {
                     {Math.round(zoom * 100) / 100}
                     {' - '}
                     {animating ? 'animating' : 'stopped'}
-                </div>  
+                </div>
             </div>
         );
     }

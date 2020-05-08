@@ -3,6 +3,7 @@ import { Button, Col, Form, ListGroup } from 'react-bootstrap';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import Loader from './Loader';
 
 function formatDate(date) {
     //the state data needs to be formatted to yyyy-MM
@@ -36,7 +37,7 @@ class FormSubmit extends Component {
         let Longtiude = this.state.longitude;
         let startDate = formatDate(this.state.startDate);
         
-        // startData needs params
+        // params are the state variables
         axios.get(`https://data.police.uk/api/stops-street?lat=${Latitude}&lng=${Longtiude}&date=${startDate}`)
             .then(res => {
                 const street_stops = res.data;
@@ -91,6 +92,7 @@ class FormSubmit extends Component {
                 </Form>
                 {this.state.isSubmitted &&
                     <ul>
+                        <Loader/>
                         {this.state.street_stops.map(street_stops => 
                             <ListGroup>
                                 <ListGroup.Item>
