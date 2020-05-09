@@ -22,8 +22,8 @@ class FormSubmit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            latitude: '',
-            longitude: '',
+            latitude: null,
+            longitude: null,
             street_stops: [],
             startDate: new Date(),
             isSubmitted: false,
@@ -43,11 +43,12 @@ class FormSubmit extends Component {
                 const street_stops = res.data;
                 this.setState({street_stops});
                 console.log(street_stops);
+                this.setState({isSubmitted: true})
             }).catch(err => {
                 console.log(err);
+                alert(err);
+                this.setState({isSubmitted: false})
             });
-        
-        this.setState({isSubmitted: true})
     };
 
     handleChangeDate = (date) => {
