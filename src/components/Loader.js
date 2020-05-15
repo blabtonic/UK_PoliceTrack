@@ -11,7 +11,7 @@ class Loader extends Component {
 
     render() {
         return (
-            <div className="loading-list">
+            <div className="loading">
                 <SquareLoader
                     size={120}
                     color={"#1b4080"}

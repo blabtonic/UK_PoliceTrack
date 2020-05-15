@@ -1,8 +1,7 @@
 import React from 'react';
 import Mapper from './components/MapComponent';
 import Form from './components/FormSubmit';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar'
+import { Nav, Navbar } from 'react-bootstrap';
 
 function App() {
   return (

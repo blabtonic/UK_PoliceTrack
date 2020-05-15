@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Map from 'pigeon-maps';
 import Marker from 'pigeon-marker';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 // need to find out how this works
 const providers = {
@@ -80,37 +81,36 @@ class Mapper extends Component {
         const { center, zoom, provider, animating, animate } = this.state;
         let mapLatitude = Math.round(center[0] * 10000) / 10000;
         let mapLongitude = Math.round(center[1] * 10000) / 10000;
-        /**
-         * mapLatitude = {Math.round(center[0] * 10000) / 10000}
-         * mapLongitude = {Math.round(center[1] * 10000) / 10000}
-         */
-        return(
-            <div className="MapBoard">
-                <Map center={center}
-                provider={providers[provider]}
-                onBoundsChanged={this.handleBoundsChange}
-                onAnimationStart={this.handleAnimationStart}
-                onAnimationStop={this.handleAnimationStop}
-                animate={animate}
-                zoom={zoom} width={700} height={500}
-                zoomOnMouseWheel={true}>
 
-                {Object.keys(markers).map(key => (
-                    <Marker key={key} anchor={markers[key][0]} payload={key}></Marker>
-                ))}
-                </Map>
-                <Button variant="primary" onClick={this.zoomIn}>+</Button>
-                <Button variant="primary"onClick={this.zoomOut}>-</Button>
-                {/* active lat and long might make better*/}
-                <div>
-                    {mapLatitude} ({lat2tile(center[0], zoom)});
-                    {' x '}
-                    {mapLongitude} ({lng2tile(center[1], zoom)});
-                    {'zoom: '}
-                    {Math.round(zoom * 100) / 100}
-                    {' - '}
-                    {animating ? 'animating' : 'stopped'}
-                </div>
+        return (
+            <div className="MapBoard">
+                <Container>
+                    <Map center={center}
+                    provider={providers[provider]}
+                    onBoundsChanged={this.handleBoundsChange}
+                    onAnimationStart={this.handleAnimationStart}
+                    onAnimationStop={this.handleAnimationStop}
+                    animate={animate}
+                    zoom={zoom} width={700} height={500}
+                    zoomOnMouseWheel={true}>
+
+                    {Object.keys(markers).map(key => (
+                        <Marker key={key} anchor={markers[key][0]} payload={key}></Marker>
+                    ))}
+                    </Map>
+                    <Button variant="primary" size="lg" onClick={this.zoomIn}>+</Button>
+                    <Button variant="primary" size="lg" onClick={this.zoomOut}>-</Button>
+                    {/* active lat and long might make better*/}
+                    <div>
+                        {mapLatitude} ({lat2tile(center[0], zoom)});
+                        {' x '}
+                        {mapLongitude} ({lng2tile(center[1], zoom)});
+                        {'zoom: '}
+                        {Math.round(zoom * 100) / 100}
+                        {' - '}
+                        {animating ? 'animating' : 'stopped'}
+                    </div>
+                </Container>
             </div>
         );
     }
