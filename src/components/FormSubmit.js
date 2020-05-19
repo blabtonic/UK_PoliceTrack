@@ -43,6 +43,7 @@ class FormSubmit extends Component {
                 const street_stops = res.data;
                 this.setState({street_stops});
                 console.log(street_stops);
+                
                 this.setState({loading: true}); // get state from Loader component
                 this.setState({isSubmitted: true});
             }).catch(err => {
@@ -51,7 +52,7 @@ class FormSubmit extends Component {
                 this.setState({isSubmitted: false});
             });
         setTimeout(() => {
-            this.setState({loading: false})
+            this.setState({loading: false});
         }, 2000);
     };
 

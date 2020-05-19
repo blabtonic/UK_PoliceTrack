@@ -37,7 +37,6 @@ class Mapper extends Component {
             animate: true,
             animating: false,
             provider: 'osm',
-            metaWheelZoom: true,
         }
     };
 

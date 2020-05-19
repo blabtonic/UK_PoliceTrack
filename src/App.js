@@ -2,15 +2,18 @@ import React from 'react';
 import Mapper from './components/MapComponent';
 import Form from './components/FormSubmit';
 import Header from './components/Header';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <br/>
-      <Mapper></Mapper>
-      <br/>
-      <Form></Form>
+    <Container>
+      <Header></Header>
+      <Row>
+        <Col sm><Mapper></Mapper></Col>
+        <Col sm><Form/></Col>
+      </Row>
+    </Container>
     </div>
   );
 }
