@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Map from "pigeon-maps";
-import Marker from "pigeon-marker";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
+import React, { Component } from 'react';
+import Map from 'pigeon-maps';
+import Marker from 'pigeon-marker';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 // need to find out how this works
 const providers = {
@@ -43,7 +43,7 @@ class Mapper extends Component {
 			zoom: 5,
 			animate: true,
 			animating: false,
-			provider: "osm",
+			provider: 'osm',
 		};
 	}
 
@@ -61,13 +61,13 @@ class Mapper extends Component {
 
 	handleBoundsChange = ({ center, zoom, bounds, initial }) => {
 		if (initial) {
-			console.log("Retrieved initial bounds: ", bounds);
+			console.log('Retrieved initial bounds: ', bounds);
 		}
 		this.setState({ center, zoom });
 	};
 
 	handleClick = ({ event, latLng, pixel }) => {
-		console.log("Map clicked", latLng, pixel);
+		console.log('Map clicked', latLng, pixel);
 	};
 
 	handleAnimationStart = () => {
@@ -116,12 +116,12 @@ class Mapper extends Component {
 					{/* active lat and long might make better*/}
 					<div>
 						{mapLatitude} ({lat2tile(center[0], zoom)});
-						{" x "}
+						{' x '}
 						{mapLongitude} ({lng2tile(center[1], zoom)});
-						{"zoom: "}
+						{'zoom: '}
 						{Math.round(zoom * 100) / 100}
-						{" - "}
-						{animating ? "animating" : "stopped"}
+						{' - '}
+						{animating ? 'animating' : 'stopped'}
 					</div>
 				</Container>
 			</div>

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import SquareLoader from "react-spinners/SquareLoader";
+import React, { Component } from 'react';
+import SquareLoader from 'react-spinners/SquareLoader';
 
 class Loader extends Component {
 	constructor(props) {
@@ -14,7 +14,7 @@ class Loader extends Component {
 			<div className="loading">
 				<SquareLoader
 					size={120}
-					color={"#1b4080"}
+					color={'#1b4080'}
 					loading={this.state.loading}
 				></SquareLoader>
 			</div>

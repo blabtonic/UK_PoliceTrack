@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { Button, Container, Col, Form, ListGroup } from "react-bootstrap";
-import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import Loader from "./Loader";
+import React, { Component } from 'react';
+import { Button, Container, Col, Form, ListGroup } from 'react-bootstrap';
+import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import Loader from './Loader';
 
 function formatDate(date) {
 	//the state data needs to be formatted to yyyy-MM
 	var d = new Date(date),
-		month = "" + (d.getMonth() + 1),
+		month = '' + (d.getMonth() + 1),
 		year = d.getFullYear();
 
 	if (month.length < 2) {
-		month = "0" + month;
+		month = '0' + month;
 	}
 
-	return [year, month].join("-");
+	return [year, month].join('-');
 }
 
 class FormSubmit extends Component {
@@ -134,14 +134,14 @@ class FormSubmit extends Component {
 										<h4>Outcome:</h4>
 										{street_stops.outcome}
 										<h4>Location:</h4>
-										<strong>Street:</strong>{" "}
-										{street_stops.location.street["name"]}
+										<strong>Street:</strong>{' '}
+										{street_stops.location.street['name']}
 										<br />
-										<strong>Latitude:</strong>{" "}
-										{street_stops.location["latitude"]}
+										<strong>Latitude:</strong>{' '}
+										{street_stops.location['latitude']}
 										<br />
-										<strong>Longitude:</strong>{" "}
-										{street_stops.location["longitude"]}
+										<strong>Longitude:</strong>{' '}
+										{street_stops.location['longitude']}
 									</ListGroup.Item>
 								</ListGroup>
 							))}

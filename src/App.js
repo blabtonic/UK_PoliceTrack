@@ -8,10 +8,10 @@ function App() {
 	return (
 		<div className="App">
 			<Container>
-				<Header></Header>
+				<Header />
 				<Row>
 					<Col sm>
-						<Mapper></Mapper>
+						<Mapper />
 					</Col>
 					<Col sm>
 						<Form />

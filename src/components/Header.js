@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Nav, Navbar } from "react-bootstrap";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { Component } from 'react';
+import { Nav, Navbar } from 'react-bootstrap';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 //import HomePage from './HomePage';
-import Mapper from "./MapComponent";
+import Mapper from './MapComponent';
 
 class Header extends Component {
 	render() {
