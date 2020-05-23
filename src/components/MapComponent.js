@@ -24,16 +24,6 @@ const markers = {
 	Cardiff: [[51.4805, -3.1981], 13],
 };
 
-const lat2tile = (lat, zoom) =>
-	((1 -
-		Math.log(
-			Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)
-		) /
-			Math.PI) /
-		2) *
-	Math.pow(2, zoom);
-const lng2tile = (lon, zoom) => ((lon + 180) / 360) * Math.pow(2, zoom);
-
 class Mapper extends Component {
 	constructor(props) {
 		super(props);
@@ -115,10 +105,10 @@ class Mapper extends Component {
 					</Button>
 					{/* active lat and long might make better*/}
 					<div>
-						{mapLatitude} ({lat2tile(center[0], zoom)});
+						{mapLatitude}
 						{' x '}
-						{mapLongitude} ({lng2tile(center[1], zoom)});
-						{'zoom: '}
+						{mapLongitude}
+						{' zoom: '}
 						{Math.round(zoom * 100) / 100}
 						{' - '}
 						{animating ? 'animating' : 'stopped'}

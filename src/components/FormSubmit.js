@@ -89,9 +89,6 @@ class FormSubmit extends Component {
 				/>
 				<Container>
 					<Form onSubmit={this.handleSubmit}>
-						<h1>
-							LAT:{this.state.latitude} x LNG:{this.state.longitude}
-						</h1>
 						<Form.Row>
 							<Form.Group as={Col} controlId="formLatitude">
 								<Form.Label>Enter Lat</Form.Label>
@@ -165,3 +162,4 @@ class FormSubmit extends Component {
 }
 
 export default FormSubmit;
+-2.294
