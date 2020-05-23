@@ -1,8 +1,9 @@
-import React from "react";
-import Mapper from "./components/MapComponent";
-import Form from "./components/FormSubmit";
-import Header from "./components/Header";
-import { Container, Row, Col } from "react-bootstrap";
+import React from 'react';
+import Mapper from './components/MapComponent';
+import Form from './components/FormSubmit';
+import Header from './components/Header';
+import Pagination from './components/Pagination';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function App() {
 	return (

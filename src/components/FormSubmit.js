@@ -4,6 +4,7 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from './Loader';
+import Pagination from './Pagination';
 
 function formatDate(date) {
 	//the state data needs to be formatted to yyyy-MM
@@ -27,6 +28,9 @@ class FormSubmit extends Component {
 			street_stops: [],
 			startDate: new Date(),
 			isSubmitted: false,
+			lists: [],
+			listsPerPage: 0,
+			currentPage: 1,
 		};
 	}
 
@@ -74,8 +78,15 @@ class FormSubmit extends Component {
 	};
 
 	render() {
+		const { lists, listsPerPage } = this.state;
+		const paginate = (pageNum) => this.setState({ currentPage: pageNum });
 		return (
 			<div>
+				<Pagination
+					listsPerPage={listsPerPage}
+					paginate={paginate}
+					totalList={lists.length}
+				/>
 				<Container>
 					<Form onSubmit={this.handleSubmit}>
 						<h1>
