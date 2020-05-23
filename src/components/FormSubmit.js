@@ -85,7 +85,7 @@ class FormSubmit extends Component {
 				<Pagination
 					listsPerPage={listsPerPage}
 					paginate={paginate}
-					totalList={lists.length}
+					totalList={this.state.street_stops.length}
 				/>
 				<Container>
 					<Form onSubmit={this.handleSubmit}>
@@ -162,4 +162,3 @@ class FormSubmit extends Component {
 }
 
 export default FormSubmit;
--2.294
