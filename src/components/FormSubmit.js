@@ -53,6 +53,9 @@ class FormSubmit extends Component {
 
         this.setState({ loading: true }); // get state from Loader component
         this.setState({ isSubmitted: true });
+        if (street_stops.length === 0) {
+          this.setState({ loading: false });
+        }
       })
       .catch((err) => {
         console.log(err);
