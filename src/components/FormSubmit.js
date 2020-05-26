@@ -29,7 +29,7 @@ class FormSubmit extends Component {
       startDate: new Date(),
       isSubmitted: false,
       lists: [],
-      listsPerPage: 0,
+      listsPerPage: 2,
       currentPage: 1,
     };
   }
@@ -81,14 +81,23 @@ class FormSubmit extends Component {
   };
 
   render() {
-    const { listsPerPage } = this.state;
+    const { currentPage, listsPerPage, lists } = this.state;
+
+    const indexOfLastList = currentPage * listsPerPage;
+    const indexOfFirstList = indexOfLastList - listsPerPage;
+    const currentLists = lists.slice(indexOfFirstList, indexOfLastList);
+
     const paginate = (pageNum) => this.setState({ currentPage: pageNum });
+    const nextPage = () => this.setState({ currentPage: currentPage + 1 });
+    const prevPage = () => this.setState({ currentPage: currentPage - 1 });
     return (
       <div>
         <Pagination
           listsPerPage={listsPerPage}
           paginate={paginate}
-          totalList={this.state.street_stops.length}
+          totalLists={this.state.street_stops.length}
+          nextPage={nextPage}
+          prevPage={prevPage}
         />
         <Container>
           <Form onSubmit={this.handleSubmit}>
@@ -135,7 +144,7 @@ class FormSubmit extends Component {
             <ul>
               {this.state.street_stops.map((street_stops) => (
                 <ListGroup>
-                  <ListGroup.Item>
+                  <ListGroup.Item lists={currentLists}>
                     <h4>Gender:</h4>
                     {street_stops.gender}
                     <h4>Ethnicity:</h4>
