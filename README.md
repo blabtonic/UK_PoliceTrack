@@ -6,9 +6,7 @@ Using the [React Library](https://reactjs.org/) to make things easier to display
 
 Will list out the components that I am using for this application in a few...
 
-
-Todos
----
+## Todos
 
 1. move list to the right
 2. more streamlined css
@@ -17,3 +15,4 @@ Todos
 5. help section
 6. header link routing
 7. get violent crime API working
+8. ~~form submit validation~~

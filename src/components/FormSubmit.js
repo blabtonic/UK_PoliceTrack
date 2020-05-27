@@ -142,8 +142,8 @@ class FormSubmit extends Component {
           </Form>
           {this.state.isSubmitted && (
             <ul>
-              {this.state.street_stops.map((street_stops) => (
-                <ListGroup>
+              {this.state.street_stops.map((street_stops, index) => (
+                <ListGroup key={index}>
                   <ListGroup.Item lists={currentLists}>
                     <h4>Gender:</h4>
                     {street_stops.gender}
