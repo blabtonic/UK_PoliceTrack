@@ -16,6 +16,7 @@ class Header extends Component {
               Violent Crimes
             </Nav.Link>
             <Nav.Link href="/search">Search and stop</Nav.Link>
+            <Nav.Link href="/help">Help</Nav.Link>
           </Nav>
         </Navbar>
         <Switch>
@@ -24,10 +25,21 @@ class Header extends Component {
             {/*Need to make mapper move to search */}
             <Mapper></Mapper>
           </Route>
+          <Route path="/help">
+            <Help />
+          </Route>
         </Switch>
       </Router>
     );
   }
+}
+
+function Help() {
+  return (
+    <div>
+      <h2>Help</h2>
+    </div>
+  );
 }
 
 export default Header;
