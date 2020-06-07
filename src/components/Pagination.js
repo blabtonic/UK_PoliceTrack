@@ -1,37 +1,31 @@
 import React, { Component } from 'react';
+import { Pagination } from 'react-bootstrap';
 
 class PaginationTab extends Component {
-  // Unable to load state from here onto Form submit
+  constructor(props) {
+    super(props);
+    this.state = { value: 1 };
+    this.nextClicked = this.nextClicked.bind(this);
+    this.prevClicked = this.prevClicked.bind(this);
+  }
+
+  nextClicked(event) {
+    this.setState({ value: this.state.value + 1 });
+  }
+
+  prevClicked(event) {
+    this.setState({ value: this.state.value - 1 });
+  }
 
   render() {
-    const { listsPerPage, paginate, totalLists, nextPage, prevPage } = this.props;
-    const pageNumbers = [];
-
-    for (let number = 1; number <= Math.ceil(totalLists / listsPerPage); number++) {
-      pageNumbers.push(number);
-    }
     return (
-      <nav>
-        <ul className="pagination justify-content-center">
-          <li className="page-item">
-            <button className="page-link" href="#" onClick={() => prevPage()}>
-              Previous
-            </button>
-          </li>
-          {pageNumbers.map((num) => (
-            <li className="page-item" key={num}>
-              <button onClick={() => paginate(num)} className="page-link" href="#">
-                {num}
-              </button>
-            </li>
-          ))}
-          <li className="page-item">
-            <button className="page-link" href="#" onClick={() => nextPage()}>
-              Next
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <Pagination>
+        <Pagination.First />
+        <Pagination.Prev onClick={this.prevClicked} />
+        <Pagination.Item active>{this.state.value}</Pagination.Item>
+        <Pagination.Next onClick={this.nextClicked} />
+        <Pagination.Last />
+      </Pagination>
     );
   }
 }

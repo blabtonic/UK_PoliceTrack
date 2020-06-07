@@ -4,9 +4,9 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from './Loader';
-import Pagination from './Pagination';
+import PagiBar from './Pagination';
 
-function formatDate(date) {
+const formatDate = (date) => {
   //the state data needs to be formatted to yyyy-MM
   var d = new Date(date),
     month = '' + (d.getMonth() + 1),
@@ -17,7 +17,7 @@ function formatDate(date) {
   }
 
   return [year, month].join('-');
-}
+};
 
 class FormSubmit extends Component {
   constructor(props) {
@@ -75,31 +75,16 @@ class FormSubmit extends Component {
 
   handleChange = (event) => {
     // THIS GETS THE INPUT NAME ATTRIBUTE FIELD!!
-    let lat = event.target.name; // input name
-    let lng = event.target.value; // value of the name attribute
-    this.setState({ [lat]: lng }); // [name]: value
+    let name = event.target.name; // input name
+    let value = event.target.value; // value of the name attribute
+    this.setState({ [name]: value }); // [name attribute]: value attribute
   };
 
   render() {
-    const { currentPage, listsPerPage, lists } = this.state;
-
-    const indexOfLastList = currentPage * listsPerPage;
-    const indexOfFirstList = indexOfLastList - listsPerPage;
-    const currentLists = lists.slice(indexOfFirstList, indexOfLastList);
-
-    const paginate = (pageNum) => this.setState({ currentPage: pageNum });
-    const nextPage = () => this.setState({ currentPage: currentPage + 1 });
-    const prevPage = () => this.setState({ currentPage: currentPage - 1 });
     return (
       <div>
-        <Pagination
-          listsPerPage={listsPerPage}
-          paginate={paginate}
-          totalLists={this.state.street_stops.length}
-          nextPage={nextPage}
-          prevPage={prevPage}
-        />
         <Container>
+          <PagiBar/>
           <Form onSubmit={this.handleSubmit}>
             <Form.Row>
               <Form.Group as={Col} controlId="formLatitude">
@@ -144,7 +129,7 @@ class FormSubmit extends Component {
             <ul>
               {this.state.street_stops.map((street_stops, index) => (
                 <ListGroup key={index}>
-                  <ListGroup.Item lists={currentLists}>
+                  <ListGroup.Item>
                     <h4>Gender:</h4>
                     {street_stops.gender}
                     <h4>Ethnicity:</h4>
