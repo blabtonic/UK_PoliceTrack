@@ -4,7 +4,6 @@ import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Loader from './Loader';
-import PagiBar from './Pagination';
 
 const formatDate = (date) => {
   //the state data needs to be formatted to yyyy-MM
@@ -28,9 +27,6 @@ class FormSubmit extends Component {
       street_stops: [],
       startDate: new Date(),
       isSubmitted: false,
-      lists: [],
-      listsPerPage: 2,
-      currentPage: 1,
     };
   }
 
@@ -84,7 +80,6 @@ class FormSubmit extends Component {
     return (
       <div>
         <Container>
-          <PagiBar/>
           <Form onSubmit={this.handleSubmit}>
             <Form.Row>
               <Form.Group as={Col} controlId="formLatitude">
@@ -117,13 +112,13 @@ class FormSubmit extends Component {
                 dateFormat="yyyy-MM" //The output of the startDate state
                 showMonthYearPicker
               />
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
             </Form.Group>
             {
               this.state.loading ? <Loader /> : null // do nothing when loading:false
             }
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
           </Form>
           {this.state.isSubmitted && (
             <ul>
