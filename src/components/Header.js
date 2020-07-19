@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-//import HomePage from './HomePage';
-import Mapper from './MapComponent';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import About from './About';
+import Help from './Help';
 
 class Header extends Component {
   render() {
@@ -11,7 +11,7 @@ class Header extends Component {
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand>DataTrack</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Link to="/">Home</Link>
             <Nav.Link href="/violent-crime" eventKey="disabled" disabled>
               Violent Crimes
             </Nav.Link>
@@ -19,27 +19,11 @@ class Header extends Component {
             <Nav.Link href="/help">Help</Nav.Link>
           </Nav>
         </Navbar>
-        <Switch>
-          <Route path="/">{/* <HomePage></HomePage> */}</Route>
-          <Route path="/search">
-            {/*Need to make mapper move to search */}
-            <Mapper></Mapper>
-          </Route>
-          <Route path="/help">
-            <Help />
-          </Route>
-        </Switch>
+        <Route path="/help" component={Help} />
+        <Route path="/About" component={About} />
       </Router>
     );
   }
-}
-
-function Help() {
-  return (
-    <div>
-      <h2>Help</h2>
-    </div>
-  );
 }
 
 export default Header;
