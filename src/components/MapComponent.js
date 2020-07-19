@@ -89,7 +89,7 @@ class Mapper extends Component {
             onAnimationStop={this.handleAnimationStop}
             animate={animate}
             zoom={zoom}
-            width={700}
+            defaultWidth={700}
             height={500}
             zoomOnMouseWheel={true}
           >

@@ -8,9 +8,9 @@ Will list out the components that I am using for this application in a few...
 
 ## Todos
 
-1. move list to the right
+1. ~~move list to the right~~
 2. more streamlined css
-3. fix scroll zoom for map
+3. ~~fix scroll zoom for map~~
 4. better UX for input LNG and LAT
 5. help section
 6. header link routing
