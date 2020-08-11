@@ -89,6 +89,7 @@ class FormSubmit extends Component {
                   step="0.0001"
                   name="latitude"
                   placeholder="Enter Latitude"
+                  defaultValue={this.mapLatitude}
                   onChange={this.handleChange}
                 ></Form.Control>
               </Form.Group>
@@ -99,6 +100,7 @@ class FormSubmit extends Component {
                   step="0.0001"
                   name="longitude"
                   placeholder="Enter Longitude"
+                  defaultValue={this.mapLongitude}
                   onChange={this.handleChange}
                 ></Form.Control>
               </Form.Group>
