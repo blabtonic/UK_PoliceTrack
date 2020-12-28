@@ -51,6 +51,7 @@ class FormSubmit extends Component {
         this.setState({ isSubmitted: true });
         if (street_stops.length === 0) {
           this.setState({ loading: false });
+          alert('No Data');
         }
       })
       .catch((err) => {
