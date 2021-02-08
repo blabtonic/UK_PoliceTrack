@@ -3,6 +3,7 @@ import Mapper from './components/MapComponent';
 import Form from './components/FormSubmit';
 import Header from './components/Header';
 import { Container, Row, Col } from 'react-bootstrap';
+import Payment from './components/PayButton';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Form />
           </Col>
         </Row>
+        <Payment/>
       </Container>
     </div>
   );
