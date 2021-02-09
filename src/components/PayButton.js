@@ -2,7 +2,7 @@ import React from 'react';
 import { PayButton } from '@paybutton/react';
 
 const BitButton = () => {
-  const to = 'bitcoincash:';
+  const to = 'bitcoincash:qzmhfk2ws3eskmajeejesvyj04lhxjpe559hymycum';
   const amount = 2;
   const currency = 'USD';
   const text = 'I take Bitcoin Cash';
