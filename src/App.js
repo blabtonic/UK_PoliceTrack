@@ -18,7 +18,9 @@ function App() {
             <Form />
           </Col>
         </Row>
-        <Payment/>
+        <br />
+        <p>Only Bitcoin Cash(BCH) not Bitcoin(BTC)</p>
+        <Payment />
       </Container>
     </div>
   );
